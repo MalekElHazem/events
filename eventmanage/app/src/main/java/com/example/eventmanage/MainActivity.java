@@ -1,17 +1,95 @@
 // MainActivity.java
 package com.example.eventmanage;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private LinearLayout eventContainer;
+
+    /*LinearLayout eventContainer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.my_events);
+
+        eventContainer = findViewById(R.id.eventContainer); // Add this ID to your LinearLayout
+
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+     private BottomNavigationView bottomNavigationView;
+    private FrameLayout frameLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.navbar);
+
+        // Initialize views
+        frameLayout = findViewById(R.id.frameLayout);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        // Set default fragment
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frameLayout, new homeFragment())
+                .commit();
+        }
+
+        // Setup bottom navigation using if-else instead of switch
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.home) {
+                selectedFragment = new homeFragment();
+            } else if (itemId == R.id.calender) {
+                selectedFragment = new peopleFragment();
+            } else if (itemId == R.id.guests) {
+                selectedFragment = new guestsFragment();
+            } else if (itemId == R.id.settings) {
+                selectedFragment = new settingsFragment();
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, selectedFragment)
+                    .commit();
+                return true;
+            }
+            return false;
+        });
+    }
+
+
+
+
+
+
+
+
+    /*private LinearLayout eventContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,5 +135,5 @@ public class MainActivity extends AppCompatActivity {
 
             eventContainer.addView(eventCard);
         }
-    }
+    }*/
 }
