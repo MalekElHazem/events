@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Android_project"
         tools:targetApi="31">
         <activity
+            android:name=".eventsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".Nav"
+            android:exported="false" />
+        <activity
             android:name=".EditEventActivity"
             android:exported="false" />
         <activity

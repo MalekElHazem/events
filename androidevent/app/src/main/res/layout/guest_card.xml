@@ -40,7 +40,7 @@
             android:layout_height="28dp"
             android:layout_marginRight="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/img"
+            android:src="@drawable/edit"
             android:contentDescription="Edit"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
@@ -53,7 +53,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Delete"
             android:scaleType="fitCenter"
-            android:src="@drawable/img" />
+            android:src="@drawable/delete" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

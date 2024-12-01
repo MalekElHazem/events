@@ -34,9 +34,11 @@ public class eventsFragment extends Fragment {
 
     private void populateEvents() {
         Event2[] events = {
-                new Event2("Team Meeting", "Today, 2:00 PM", R.drawable.ic_launcher_background),
-                new Event2("Birthday Party", "Tomorrow, 6:00 PM", R.drawable.ic_launcher_background),
-                new Event2("Conference", "Next Week", R.drawable.ic_launcher_background)
+                new Event2("Team Meeting", "Today, 2:00 PM", R.drawable.gnx),
+                new Event2("Birthday Party", "Tomorrow, 6:00 PM", R.drawable.mrmorale),
+                new Event2("Conference", "Next Week", R.drawable.tbap),
+                new Event2("Conference", "Next Week", R.drawable.gkmc)
+
         };
 
         LayoutInflater inflater = LayoutInflater.from(requireContext());

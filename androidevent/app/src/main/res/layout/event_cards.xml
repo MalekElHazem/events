@@ -43,7 +43,7 @@
         android:layout_height="151dp"
         android:layout_marginTop="12dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/img"
+        android:src="@drawable/gnx"
         app:layout_constraintEnd_toStartOf="@id/buttonLayout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="7dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/img"
+            android:src="@drawable/edit"
             android:contentDescription="Edit"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
@@ -79,7 +79,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Delete"
             android:scaleType="fitCenter"
-            android:src="@drawable/img" />
+            android:src="@drawable/delete" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

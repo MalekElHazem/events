@@ -37,7 +37,7 @@ public class guestsFragment extends Fragment {
                 new Guest("John Doe", "+1 234-567-8900", R.drawable.side_nav_bar),
                 new Guest("Jane Smith", "+1 234-567-8901", R.drawable.side_nav_bar),
                 new Guest("Mike Johnson", "+1 234-567-8902", R.drawable.side_nav_bar),
-                new Guest("Sarah Williams", "+1 234-567-8903", R.drawable.side_nav_bar)
+                new Guest("Sarah Williams", "+1 234-567-8903", R.drawable.side_nav_bar),
         };
 
         LayoutInflater inflater = LayoutInflater.from(requireContext());
