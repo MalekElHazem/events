@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,50 +19,55 @@ import android.view.ViewGroup;
  */
 public class peopleFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public peopleFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment peopleFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static peopleFragment newInstance(String param1, String param2) {
-        peopleFragment fragment = new peopleFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private LinearLayout eventContainer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_people, container, false);
+        View view = inflater.inflate(R.layout.my_events, container, false);
+        eventContainer = view.findViewById(R.id.eventContainer);
+
+        // Add event button click listener
+        ImageButton addButton = view.findViewById(R.id.addEventButton);
+        addButton.setOnClickListener(v -> {
+            // Handle add event click
+        });
+
+        populateEvents();
+        return view;
+    }
+
+    private void populateEvents() {
+        Event[] events = {
+                new Event("Team Meeting", "Today, 2:00 PM", R.drawable.gnx),
+                new Event("Birthday Party", "Tomorrow, 6:00 PM", R.drawable.gnx),
+                new Event("Conference", "Next Week", R.drawable.gnx)
+        };
+
+        LayoutInflater inflater = LayoutInflater.from(requireContext());
+
+        for (Event event : events) {
+            View eventCard = inflater.inflate(R.layout.event_card, eventContainer, false);
+
+            TextView titleView = eventCard.findViewById(R.id.eventTitle);
+            TextView dateTimeView = eventCard.findViewById(R.id.eventDateTime);
+            ImageView imageView = eventCard.findViewById(R.id.eventImage);
+            ImageButton editButton = eventCard.findViewById(R.id.editButton);
+            ImageButton deleteButton = eventCard.findViewById(R.id.deleteButton);
+
+            titleView.setText(event.getTitle());
+            dateTimeView.setText(event.getDateTime());
+            imageView.setImageResource(event.getImageResourceId());
+
+            editButton.setOnClickListener(v -> {
+                // Handle edit event
+            });
+
+            deleteButton.setOnClickListener(v -> {
+                eventContainer.removeView(eventCard);
+            });
+
+            eventContainer.addView(eventCard);
+        }
     }
 }

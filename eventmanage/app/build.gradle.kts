@@ -44,4 +44,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Firebase dependencies with correct Kotlin DSL syntax
+    implementation("com.google.firebase:firebase-firestore:24.10.2")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
+
+
 }

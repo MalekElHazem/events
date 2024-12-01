@@ -1,5 +1,7 @@
 package com.example.eventmanage;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +9,62 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link settingsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
+// SettingsFragment.java
 public class settingsFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public settingsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment settingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static settingsFragment newInstance(String param1, String param2) {
-        settingsFragment fragment = new settingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private EditText nameEditText, emailEditText, genderEditText, passwordEditText;
+    private Button saveButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+                           Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.profile, container, false);
+        
+        // Initialize views
+        nameEditText = view.findViewById(R.id.titleEditText);
+        emailEditText = view.findViewById(R.id.dateEditText);
+        genderEditText = view.findViewById(R.id.timeEditText);
+        passwordEditText = view.findViewById(R.id.placeEditText);
+        saveButton = view.findViewById(R.id.addButton);
+
+        // Load existing profile data if any
+        loadProfileData();
+
+        // Set up save button click listener
+        saveButton.setOnClickListener(v -> saveProfileData());
+
+        return view;
+    }
+
+    private void loadProfileData() {
+        // Get shared preferences
+        SharedPreferences prefs = requireActivity().getSharedPreferences("ProfilePrefs", Context.MODE_PRIVATE);
+        
+        // Load saved data
+        nameEditText.setText(prefs.getString("name", ""));
+        emailEditText.setText(prefs.getString("email", ""));
+        genderEditText.setText(prefs.getString("gender", ""));
+        passwordEditText.setText(prefs.getString("password", ""));
+    }
+
+    private void saveProfileData() {
+        // Get shared preferences editor
+        SharedPreferences.Editor editor = requireActivity().getSharedPreferences("ProfilePrefs", Context.MODE_PRIVATE).edit();
+        
+        // Save data
+        editor.putString("name", nameEditText.getText().toString());
+        editor.putString("email", emailEditText.getText().toString());
+        editor.putString("gender", genderEditText.getText().toString());
+        editor.putString("password", passwordEditText.getText().toString());
+        editor.apply();
+
+        // Show success message
+        Toast.makeText(requireContext(), "Profile saved successfully", Toast.LENGTH_SHORT).show();
     }
 }

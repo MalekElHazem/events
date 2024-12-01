@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-     private BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
 
     @Override
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // Set default fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, new homeFragment())
+                .replace(R.id.frameLayout, new peopleFragment())
                 .commit();
         }
 
@@ -62,9 +62,7 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             int itemId = item.getItemId();
 
-            if (itemId == R.id.home) {
-                selectedFragment = new homeFragment();
-            } else if (itemId == R.id.calender) {
+            if (itemId == R.id.calender) {
                 selectedFragment = new peopleFragment();
             } else if (itemId == R.id.guests) {
                 selectedFragment = new guestsFragment();
