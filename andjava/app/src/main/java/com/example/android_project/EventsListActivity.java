@@ -24,13 +24,24 @@ public class EventsListActivity extends AppCompatActivity implements EventAdapte
     private List<Event> eventList;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+    private Button eventsButton, guestsButton, profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_list);
 
-        // Initialize Firebase
+        // Initialize navigation buttons
+        eventsButton = findViewById(R.id.eventsButton);
+        guestsButton = findViewById(R.id.guestsButton);
+        profileButton = findViewById(R.id.profileButton);
+
+        // Set up navigation click listeners
+        eventsButton.setOnClickListener(v -> navigateToEvents());
+        guestsButton.setOnClickListener(v -> navigateToGuests());
+        profileButton.setOnClickListener(v -> navigateToProfile());
+
+        // Existing initialization code...
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -42,8 +53,7 @@ public class EventsListActivity extends AppCompatActivity implements EventAdapte
 
         // Fetch events
         fetchEvents();
-        ImageButton refreshButton = findViewById(R.id.refreshButton);
-        refreshButton.setOnClickListener(v -> fetchEvents());
+
 
         Button addEventButton = findViewById(R.id.addEventButton);
         addEventButton.setOnClickListener(v -> {
@@ -51,18 +61,30 @@ public class EventsListActivity extends AppCompatActivity implements EventAdapte
             Intent intent = new Intent(EventsListActivity.this, AddEventActivity.class);
             startActivity(intent);
         });
-
-
-
-        Button editprofileButton= findViewById(R.id.editprofileButton);
-        editprofileButton.setOnClickListener(v -> {
-            // Navigate to the Add Event activity
-            Intent intent = new Intent(EventsListActivity.this, EditProfileActivity.class);
-            startActivity(intent);
-        });
-
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchEvents();
     }
 
+    private void navigateToEvents() {
+        // Already on events screen
+        return;
+    }
+
+    private void navigateToGuests() {
+        Intent intent = new Intent(this, GuestsListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void navigateToProfile() {
+        Intent intent = new Intent(this, EditProfileActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     private void fetchEvents() {
         String userId = mAuth.getCurrentUser().getUid();

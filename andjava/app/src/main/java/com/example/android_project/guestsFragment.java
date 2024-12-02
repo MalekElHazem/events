@@ -77,7 +77,7 @@ public class guestsFragment extends Fragment {
                         guestList.clear();
                         for (DocumentSnapshot document : querySnapshot) {
                             Guest guest = document.toObject(Guest.class);
-                            guest.setId(document.getId()); // Store document ID
+                            guest.setGuestId(document.getId()); // Store document ID
                             guestList.add(guest);
                         }
                         populateGuests();
@@ -109,7 +109,7 @@ public class guestsFragment extends Fragment {
 
             editButton.setOnClickListener(v -> {
                 Intent intent = new Intent(getContext(), EditGuestActivity.class);
-                intent.putExtra("guestId", guest.getId());
+                intent.putExtra("guestId", guest.getGuestId());
                 intent.putExtra("name", guest.getName());
                 intent.putExtra("contact", guest.getContact());
                 startActivity(intent);
@@ -121,7 +121,7 @@ public class guestsFragment extends Fragment {
                     .setMessage("Are you sure you want to delete this guest?")
                     .setPositiveButton("Yes", (dialog, which) -> {
                         db.collection("guests")
-                            .document(guest.getId())
+                            .document(guest.getGuestId())
                             .delete()
                             .addOnSuccessListener(aVoid -> {
                                 Toast.makeText(getContext(), "Guest deleted.", Toast.LENGTH_SHORT).show();

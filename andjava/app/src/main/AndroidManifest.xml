@@ -15,9 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_project"
         tools:targetApi="31">
+
         <activity
             android:name=".EditGuestActivity"
             android:exported="false" />
+        <activity
+            android:name=".GuestsListActivity"
+            android:exported="false" />
+
         <activity
             android:name=".AddGuestActivity"
             android:exported="false" />

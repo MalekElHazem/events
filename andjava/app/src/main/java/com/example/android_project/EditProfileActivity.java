@@ -30,6 +30,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private EditText nameEditText, emailEditText;
+    private Button eventsButton, guestsButton; // Add nav buttons
+
     private Button saveProfileButton, changePasswordButton, logoutButton;
 
     @Override
@@ -46,6 +48,14 @@ public class EditProfileActivity extends AppCompatActivity {
         // Initialize Firebase Auth and Firestore
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        // Initialize navigation buttons
+        eventsButton = findViewById(R.id.eventsButton);
+        guestsButton = findViewById(R.id.guestsButton);
+
+        // Set up navigation click listeners
+        eventsButton.setOnClickListener(v -> navigateToEvents());
+        guestsButton.setOnClickListener(v -> navigateToGuests());
 
         // Initialize views
         nameEditText = findViewById(R.id.nameEditText);
@@ -78,6 +88,23 @@ public class EditProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void navigateToEvents() {
+        Intent intent = new Intent(this, EventsListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void navigateToGuests() {
+        Intent intent = new Intent(this, GuestsListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void navigateToProfile() {
+        // Already on profile screen
+        return;
     }
 
     private void loadUserData() {

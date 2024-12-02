@@ -59,7 +59,7 @@ public class AddGuestActivity extends AppCompatActivity {
         String userId = currentUser.getUid();
     
         // Create a new Guest object with createdBy field
-        Guest newGuest = new Guest(name, contact, userId);
+        Guest newGuest = new Guest(name, contact, null, userId); // Pass null for id since Firestore will generate one
     
         db.collection("guests")
                 .add(newGuest)

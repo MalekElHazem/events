@@ -38,7 +38,7 @@ public class profileFragment extends Fragment {
     private Button saveProfileButton, changePasswordButton;
 
     @Override
-public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.activity_edit_profile, container, false);
 
     ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.main), (v, insets) -> {

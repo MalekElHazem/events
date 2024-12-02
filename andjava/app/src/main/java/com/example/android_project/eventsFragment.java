@@ -55,8 +55,7 @@ public class eventsFragment extends Fragment implements EventAdapter.OnEventClic
             startActivity(intent);
         });
 
-        ImageButton refreshButton = view.findViewById(R.id.refreshButton);
-        refreshButton.setOnClickListener(v -> fetchEvents());
+
 
         return view;
     }

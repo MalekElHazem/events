@@ -77,7 +77,7 @@ public class loginActivity extends AppCompatActivity {
                             // Login successful, handle the logged-in user
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(loginActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(loginActivity.this,Nav.class);
+                            Intent intent = new Intent(loginActivity.this,EventsListActivity.class);
                             startActivity(intent);
                             // You can add your desired logic here, such as navigating to the next screen
                         } else {
