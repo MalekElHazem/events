@@ -50,7 +50,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 changePassword();
-                Intent intent = new Intent(ChangePasswordActivity.this, EditProfileActivity.class);
+                Intent intent = new Intent(ChangePasswordActivity.this, Nav.class);
                 startActivity(intent);
             }
         });
@@ -92,4 +92,5 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     });
         }
     }
+    
 }

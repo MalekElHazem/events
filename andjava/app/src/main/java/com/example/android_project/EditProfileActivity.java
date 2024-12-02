@@ -30,7 +30,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private EditText nameEditText, emailEditText;
-    private Button saveProfileButton, changePasswordButton;
+    private Button saveProfileButton, changePasswordButton, logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +47,18 @@ public class EditProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Find views
+        // Initialize views
         nameEditText = findViewById(R.id.nameEditText);
         emailEditText = findViewById(R.id.emailEditText);
         saveProfileButton = findViewById(R.id.saveProfileButton);
         changePasswordButton = findViewById(R.id.changePasswordButton);
+        logoutButton = findViewById(R.id.logout);
 
-        // Load current user's profile
-        loadUserProfile();
+        // Set up logout button click listener
+        logoutButton.setOnClickListener(v -> performLogout());
+
+        // Load user data
+        loadUserData();
 
         // Set click listeners
         saveProfileButton.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +80,9 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void loadUserProfile() {
+    private void loadUserData() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            // Set name and email in EditText fields
             nameEditText.setText(currentUser.getDisplayName());
             emailEditText.setText(currentUser.getEmail());
         }
@@ -130,5 +133,15 @@ public class EditProfileActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void performLogout() {
+        mAuth.signOut();
+        // Create intent for login activity
+        Intent intent = new Intent(EditProfileActivity.this, loginActivity.class);
+        // Clear activity stack
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

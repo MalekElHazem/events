@@ -1,15 +1,9 @@
 package com.example.android_project;
 
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -32,7 +26,7 @@ public class Nav extends AppCompatActivity {
         // Set default fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frameLayout, new eventsFragment())
+                    .replace(R.id.frameLayout, new guestsFragment())
                     .commit();
         }
 
