@@ -108,7 +108,7 @@
             android:layout_margin="4dp"
             android:text="Events"
             android:textColor="@color/orange"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/trans"/>
 
         <Button
             android:id="@+id/guestsButton"
@@ -118,7 +118,7 @@
             android:layout_margin="4dp"
             android:text="Guests"
             android:textColor="@color/orange"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/trans"/>
 
         <Button
             android:id="@+id/profileButtonprofileButton"

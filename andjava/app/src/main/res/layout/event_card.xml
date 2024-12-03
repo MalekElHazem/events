@@ -53,10 +53,10 @@
                 android:text="Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/orange"
+                android:textColor="@color/blue"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="150dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/trans"
                 />
 
             <Button
@@ -64,8 +64,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delete"
-                android:textColor="@color/orange"
-                android:backgroundTint="@color/black"/>
+                android:textColor="@color/red"
+                android:backgroundTint="@color/trans"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -79,7 +79,7 @@
             android:layout_margin="4dp"
             android:text="Guests"
             android:textColor="@color/orange"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/trans"/>
 
         <Button
             android:id="@+id/profileButton"
@@ -89,7 +89,7 @@
             android:layout_margin="4dp"
             android:text="Profile"
             android:textColor="@color/orange"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/trans"/>
 
     </LinearLayout>
 
